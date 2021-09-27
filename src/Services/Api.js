@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const BASE_API = 'http://10.0.2.2:3000';
 
 export default {
@@ -8,7 +9,7 @@ export default {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({token})
             });
@@ -36,16 +37,42 @@ export default {
             console.error("Erro ao requisitar api: ", error);
         }
     },
-    cadastroConta: async (nome, isAdm, endereco, email, senha, confirmaSenha, avatar) => {
-        const req = await fetch(`${BASE_API}/usuario/cadastro`, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({nome, isAdm, endereco, email, senha, avatar})
-        });
-        const json = await req.json();
-        return json;
+    cadastroConta: async (isAdm, nome, endereco, email, senha, avatar) => {
+        try {
+            const req = await fetch(`${BASE_API}/usuario/cadastro`, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({isAdm, nome, endereco, email, senha, avatar})
+            });
+            const json = await req.json();
+    
+            return json;
+        } catch (error) {
+            console.error("Erro: ", error);
+        }
+    },
+    getAvaliacoes: async () => {
+        try {
+            const tokenString = await AsyncStorage.getItem('token');
+            const token = JSON.parse(tokenString);
+            const req = await fetch(`${BASE_API}/feedback/`, {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+            });
+            const json = await req.json();
+            return json;
+        } catch (error) {
+            console.error("Erro de fetch: ", error);
+        }
+    },
+    getServicos: async (token) => {
+
     },
 }

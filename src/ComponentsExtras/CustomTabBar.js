@@ -1,5 +1,5 @@
 import React, { useContext } from "react"; 
-import { Text, StyleSheet } from 'react-native';
+import { Text, } from 'react-native';
 import styled from 'styled-components/native';
 import { UserContext } from '../Contexts/UserContext'; 
 const HomeIcon = require('../assets/icons/homeTab.png');
@@ -90,5 +90,6 @@ export default ({ state, navigation }) => {
                 }
             </TabItem>
         </TabArea>
+        
     );
 }

@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 export const Container = styled.SafeAreaView`
     background-color: #7ECAD7;
     flex: 1;
+    justify-content: center;
 `;
 
 export const ListaNome = styled.View`
@@ -53,31 +54,15 @@ export const Texto = StyleSheet.create({
     },
 });
 
-export const TabFavorites = styled.View`
-    align-items: center;
-    justify-content: center;   
-    flex-direction: row;
-    margin: 50px 0px 20px 0px;
-`;
-
-export const TabArrow = styled.TouchableOpacity`
-    height: 95px;
-    width: 27px;
-    margin: 0px 5px;
-    align-items: center;
-    justify-content: center;
-`;
-
 export const Seta = styled.Image`
     width: 30px;
     height: 30px;
     resize-mode: contain;
 `;
 
-export const BoxFavorites = styled.View`
-    width: 310px;
-    height: 95px;
-    background-color: #fff;
-    border-radius: 30px;
+export const TabInfoArea = styled.View`
+    flex: 0.9;
     align-items: center;
+    justify-content: center;
+    flex-direction: row;
 `;

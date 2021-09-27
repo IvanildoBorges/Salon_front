@@ -27,7 +27,7 @@ export default () => {
     const irParaHome = async () => {
         if (emailState != '' && senhaState != '') {
             const json = await Api.loginConta(emailState, senhaState);
-            if (json) {
+            if (json.response) {
                 //const jsonString = JSON.stringify(json);
                 const token = JSON.stringify(json.token);
                 await AsyncStorage.setItem('token', token);

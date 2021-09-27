@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Alert, Text, } from 'react-native';
 import { 
     Container,
     ListaNome,
@@ -7,23 +7,53 @@ import {
     Servico,
     TabContainer,
     Texto,
-    TabFavorites,
-    TabArrow,
     Seta,
-    BoxFavorites,
+    TabInfoArea,
 } from './styles';
 import arrowLeft from '../../assets/icons/seta-esquerda.png';
 import arrowRight from '../../assets/icons/seta-direita.png';
 import CardServicos from '../../ComponentsExtras/CardServicos';
-
-const Apagar = StyleSheet.create({
-    Teste: {
-        fontFamily: "Roboto-Italic",
-        fontSize: 24,
-    },
-});
+import ItemAvaliacao from '../../ComponentsExtras/ItemAvaliacao';
+import Api from '../../Services/Api';
+import AppIntroSlider from 'react-native-app-intro-slider';
 
 export default () => {
+
+    const [list, setList] = useState([]);
+
+    const getAvaliacoes = async () => {
+        let res = await Api.getAvaliacoes();
+        if (res.response) {
+            setList(res.data);
+        } else {
+            Alert.alert(
+                "Não foi possível carregar os comentários!", 
+                "Erro: "+res.error
+            );
+        }
+    }
+
+    useEffect(() => {
+        getAvaliacoes();
+    }, []);
+
+    function listaComentarios({ item }){
+        return (
+            <ItemAvaliacao data={item} />
+        );
+    }
+
+    const onPressTouchLeft = () => {
+        return (
+            <Seta source={arrowLeft}/>
+        )
+    }
+
+    const onPressTouchRigth = () => {
+        return (
+            <Seta source={arrowRight}/>
+        )
+    }
 
     return (
         <Container>
@@ -41,22 +71,25 @@ export default () => {
                     imagem={require('../../assets/icons/tesoura-pente.png')}
                     nomeServico="Cabelereiro"
                 />
-                <CardServicos 
+                <CardServicos
                     imagem={require('../../assets/icons/barba.png')}
                     nomeServico="Barbeiro"
                 />
             </TabContainer>
-            <TabFavorites>
-                <TabArrow>
-                    <Seta source={arrowLeft}/>
-                </TabArrow>
-                <BoxFavorites>
-                    <Text style={Apagar.Teste}>Lista de favoritos</Text>
-                </BoxFavorites>
-                <TabArrow>
-                    <Seta source={arrowRight}/>
-                </TabArrow>
-            </TabFavorites>
+            <TabInfoArea>
+                <AppIntroSlider
+                    renderItem={listaComentarios}
+                    data={list}
+                    activeDotStyle={{
+                        backgroundColor: '#268596',
+                        width: 30,
+                    }}
+                    renderNextButton={onPressTouchRigth}
+                    showPrevButton={true}
+                    renderPrevButton={onPressTouchLeft}
+                    renderDoneButton={()=> <Text></Text> }
+                />
+            </TabInfoArea>
         </Container>
     );
 }

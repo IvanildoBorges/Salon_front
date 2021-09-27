@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 const TabItem = styled.TouchableOpacity`
@@ -30,8 +31,14 @@ const Texto = StyleSheet.create({
 });
 
 export default ({imagem, nomeServico}) => {
+    const navigation = useNavigation();
+
+    function getCabelereiros(){
+        navigation.navigate('Servicos');
+    }
+
     return (
-        <TabItem>
+        <TabItem onPress={() => getCabelereiros()}>
             <Icone source={imagem} />
             <Text style={Texto.TitlesImagens}>{nomeServico}</Text>
         </TabItem>

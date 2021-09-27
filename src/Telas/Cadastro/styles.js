@@ -19,6 +19,25 @@ export const AreaDeEntrada = styled.View`
     width: 100%;
 `;
 
+export const CaixaPrivilegio = styled.View`
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 10px;
+`;
+
+export const CheckBoxTeste = StyleSheet.create({
+    Estilo: {
+        alignSelf: "center",
+    },
+    Texto: {
+        fontFamily: "Roboto-Bold",
+        fontSize: 14,
+        color: "#268596",
+        lineHeight: 20,
+        letterSpacing: 0.4,
+    },
+});
+
 export const BotaoCustomizado = styled.TouchableOpacity`
     height: 50px;
     background-color: #268596;
@@ -40,7 +59,6 @@ export const TituloDoBotao = StyleSheet.create({
 export const AreaDeCadastro = styled.TouchableOpacity`
     flex-direction: row;
     justify-content: center;
-    margin-top: 10px;
 `;
 
 export const TextoCadastroBold = StyleSheet.create({
