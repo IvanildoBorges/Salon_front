@@ -33,12 +33,12 @@ const Texto = StyleSheet.create({
 export default ({imagem, nomeServico}) => {
     const navigation = useNavigation();
 
-    function getCabelereiros(){
-        navigation.navigate('Servicos');
+    function getServicos(){
+        navigation.navigate('Servicos', {servico: nomeServico, modal: false});
     }
 
     return (
-        <TabItem onPress={() => getCabelereiros()}>
+        <TabItem onPress={() => getServicos()}>
             <Icone source={imagem} />
             <Text style={Texto.TitlesImagens}>{nomeServico}</Text>
         </TabItem>

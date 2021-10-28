@@ -19,13 +19,12 @@ export default () => {
                 const token = JSON.parse(tokenString);
                 if (token) {
                     let res = await Api.getToken(token);
-                    console.log(res);
                     if (res.token) {
                         await AsyncStorage.setItem('token', JSON.stringify(res.token));
                         userDispatch({
                             type:'setAvatar',
                             payload: {
-                                avatar: res.data.avatar
+                                avatar: res.data.avatar,
                             }
                         });
                         if (res.data.privilegio) {

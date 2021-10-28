@@ -37,7 +37,6 @@ export default () => {
                         avatar: json.data.avatar
                     }
                 });
-                console.log(json.data.privilegio);
                 if (json.data.privilegio == 1) {
                     navigation.reset({
                         routes: [{name: 'FuncionarioStack'}]

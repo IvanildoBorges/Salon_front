@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from 'react';
-import { initialState, UseReducer, UserReducer } from '../Reducers/UserReducer';
+import { initialState, UserReducer } from '../Reducers/UserReducer';
+
 export const UserContext = createContext();
 
 export default ({children}) => {

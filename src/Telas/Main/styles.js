@@ -9,6 +9,10 @@ export const Container = styled.SafeAreaView`
     justify-content: center;
 `;
 
+export const Carregando = styled.ActivityIndicator`
+    margin-top: 30px;
+`;
+
 export const Estilo = StyleSheet.create({
     Titulo: {
         width: 327,

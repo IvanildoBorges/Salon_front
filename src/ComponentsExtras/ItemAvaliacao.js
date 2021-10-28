@@ -34,7 +34,7 @@ const Estilo = StyleSheet.create({
     },
 });
 
-export default ({data}) => {
+export default ({ data }) => {
 
     return(
         <Area>

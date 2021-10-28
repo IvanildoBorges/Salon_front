@@ -31,13 +31,6 @@ export const Texto = StyleSheet.create({
     },
 });
 
-export const AreaDeEntrada = styled.View`
-    flex: 0.2;
-    padding: 1% 10%;
-    width: 100%;
-    justify-content: center;
-`;
-
 export const AreaText = styled.View`
     flex: 0.1;
     padding: 0% 10%;
@@ -49,8 +42,4 @@ export const AreaText = styled.View`
 export const BoxScroll = styled.ScrollView`
     flex: 1;
     padding: 0% 12%;
-`;
-
-export const Carregando = styled.ActivityIndicator`
-    margin-top: 30px;
 `;

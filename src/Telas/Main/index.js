@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, Image, Alert } from 'react-native';
 import { 
-    Container, 
+    Container,
+    Carregando, 
     Estilo, 
     Caixa,
     ButtonCadastro,
@@ -11,11 +12,12 @@ import {
 } from './styles';
 import { EstiloLogo } from '../../ComponentsExtras/LogoEstiloMenor';
 import { useNavigation } from '@react-navigation/native';
+import Api from '../../Services/Api';
 
 export default () => {
 
     const navigation = useNavigation();
-
+    const [loading, setLoading] = useState(false);
     // const sairDoApp = () => {
     //     Alert.alert("Deseja mesmo sair do app?", [
     //         {
@@ -43,6 +45,19 @@ export default () => {
     //     );
     // }, []);
 
+    const showMain = async () => {
+        setLoading(true);
+        const msg = await Api.saudacao();
+        if (msg.response) {
+            console.log(msg.data);
+        }
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        showMain();
+    }, []);
+
     const clickNoBotaoCadastro = () => {
         navigation.navigate("Cadastro");
     };
@@ -53,6 +68,9 @@ export default () => {
 
     return (
         <Container>
+            {loading &&
+                <Carregando size="large" color="#268596" />
+            }
             <Image 
                 style={EstiloLogo.Logo}
                 source={require('../../assets/icons/barba2.png')} 

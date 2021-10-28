@@ -1,8 +1,9 @@
 export const initialState = {
     avatar: '',
+    id: '',
     favoritos: [],
-    agendamentos: [],
-    completos: []
+    agendados: [],
+    completos: [],
 };
 
 export const UserReducer = (state, action) => {
@@ -11,15 +12,19 @@ export const UserReducer = (state, action) => {
             return { ...state, avatar: action.payload.avatar };
         break;
 
-        case '':
+        case 'setId':
+            return { ...state, id: action.payload.id };
+        break;
+
+        case 'setFavoritos':
             return {  };
         break;
 
-        case '':
+        case 'setAgendados':
             return {  };
         break;
         
-        case '':
+        case 'setCompletos':
             return {  };
         break;
 
